@@ -98,7 +98,7 @@ export default async function Home() {
   return (
     <main>
       {/* User Header */}
-      <nav className="navbar navbar-expand py-3" style={{ background: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(10px)' }}>
+      <nav className="navbar navbar-expand py-3" style={{ background: '#4a3f6b' }}>
         <div className="container">
           <span className="navbar-brand text-white d-flex align-items-center gap-2">
             <i className="bi bi-emoji-laughing"></i>

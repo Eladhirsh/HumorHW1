@@ -23,9 +23,9 @@ export default async function CaptionsPage() {
   return (
     <main>
       {/* User Header */}
-      <nav className="navbar navbar-expand py-3" style={{ background: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(10px)' }}>
+      <nav className="navbar navbar-expand py-3" style={{ background: '#4a3f6b' }}>
         <div className="container">
-          <a href="/" className="navbar-brand text-white d-flex align-items-center gap-2">
+          <a href="/" className="navbar-brand text-white d-flex align-items-center gap-2" style={{ textDecoration: 'none' }}>
             <i className="bi bi-emoji-laughing"></i>
             Humor Hub
           </a>
@@ -70,7 +70,7 @@ export default async function CaptionsPage() {
       </section>
 
       {/* Main Content */}
-      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+      <div className="container py-4" style={{ position: 'relative', zIndex: 1, marginTop: '2rem' }}>
         {error && (
           <div className="alert alert-danger" role="alert">
             <i className="bi bi-exclamation-triangle me-2"></i>
