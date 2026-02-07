@@ -50,15 +50,6 @@ export default async function Home() {
 
   const { data: { user } } = await supabase.auth.getUser();
 
-  // Check if user is admin
-  const { data: profile } = await supabase
-    .from('profiles')
-    .select('is_superadmin')
-    .eq('id', user?.id)
-    .single();
-
-  const isAdmin = profile?.is_superadmin || false;
-
   const { data: themes, error } = await supabase
     .from('humor_themes')
     .select('*')
@@ -122,12 +113,6 @@ export default async function Home() {
               <i className="bi bi-chat-square-quote me-1"></i>
               Rate
             </a>
-            {isAdmin && (
-              <a href="/admin" className="btn btn-outline-warning btn-sm">
-                <i className="bi bi-shield-lock me-1"></i>
-                Admin
-              </a>
-            )}
             <div className="d-flex align-items-center gap-2 text-white">
               {user?.user_metadata?.avatar_url && (
                 <img
