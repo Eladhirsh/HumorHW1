@@ -105,9 +105,13 @@ export default async function Home() {
             Humor Hub
           </span>
           <div className="d-flex align-items-center gap-3">
+            <a href="/upload" className="btn btn-outline-light btn-sm">
+              <i className="bi bi-cloud-upload me-1"></i>
+              Upload
+            </a>
             <a href="/captions" className="btn btn-outline-light btn-sm">
               <i className="bi bi-chat-square-quote me-1"></i>
-              Rate Captions
+              Rate
             </a>
             <div className="d-flex align-items-center gap-2 text-white">
               {user?.user_metadata?.avatar_url && (
