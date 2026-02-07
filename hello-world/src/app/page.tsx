@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase';
+import { createClient } from '@/lib/supabase/server';
 
 type HumorTheme = {
   id: number;
@@ -46,6 +46,10 @@ function getCardColor(index: number): string {
 }
 
 export default async function Home() {
+  const supabase = await createClient();
+
+  const { data: { user } } = await supabase.auth.getUser();
+
   const { data: themes, error } = await supabase
     .from('humor_themes')
     .select('*')
@@ -93,15 +97,45 @@ export default async function Home() {
 
   return (
     <main>
+      {/* User Header */}
+      <nav className="navbar navbar-expand py-3" style={{ background: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(10px)' }}>
+        <div className="container">
+          <span className="navbar-brand text-white d-flex align-items-center gap-2">
+            <i className="bi bi-emoji-laughing"></i>
+            Humor Hub
+          </span>
+          <div className="d-flex align-items-center gap-3">
+            <div className="d-flex align-items-center gap-2 text-white">
+              {user?.user_metadata?.avatar_url && (
+                <img
+                  src={user.user_metadata.avatar_url}
+                  alt="Profile"
+                  width={32}
+                  height={32}
+                  style={{ borderRadius: '50%' }}
+                />
+              )}
+              <span className="d-none d-sm-inline">{user?.user_metadata?.full_name || user?.email}</span>
+            </div>
+            <form action="/auth/signout" method="post">
+              <button type="submit" className="btn btn-outline-light btn-sm">
+                <i className="bi bi-box-arrow-right me-1"></i>
+                Sign Out
+              </button>
+            </form>
+          </div>
+        </div>
+      </nav>
+
       {/* Hero Section */}
-      <section className="hero-section">
+      <section className="hero-section" style={{ paddingTop: '2rem' }}>
         <div className="container text-center">
           <div className="hero-icon">
             <i className="bi bi-emoji-laughing text-white"></i>
           </div>
           <h1 className="hero-title mb-3">Humor Themes</h1>
           <p className="hero-subtitle mb-0">
-            Discover the many flavors of comedy and laughter
+            Welcome back, {user?.user_metadata?.full_name?.split(' ')[0] || 'friend'}! Explore the many flavors of comedy.
           </p>
         </div>
       </section>
