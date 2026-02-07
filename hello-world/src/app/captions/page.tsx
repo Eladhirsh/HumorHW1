@@ -23,7 +23,7 @@ export default async function CaptionsPage() {
   return (
     <main>
       {/* User Header */}
-      <nav className="navbar navbar-expand py-3" style={{ background: '#4a3f6b' }}>
+      <nav className="navbar navbar-expand py-3" style={{ background: '#1a1a2e' }}>
         <div className="container">
           <a href="/" className="navbar-brand text-white d-flex align-items-center gap-2" style={{ textDecoration: 'none' }}>
             <i className="bi bi-emoji-laughing"></i>
