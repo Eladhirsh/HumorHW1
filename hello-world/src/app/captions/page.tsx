@@ -13,12 +13,37 @@ export default async function CaptionsPage() {
 
   const { data: { user } } = await supabase.auth.getUser();
 
-  const { data: captions, error } = await supabase
+  // Get the user's profile_id
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('id')
+    .eq('id', user?.id)
+    .single();
+
+  // Get caption IDs the user has already voted on
+  let votedCaptionIds: string[] = [];
+  if (profile) {
+    const { data: votes } = await supabase
+      .from('caption_votes')
+      .select('caption_id')
+      .eq('profile_id', profile.id);
+
+    votedCaptionIds = votes?.map(v => v.caption_id) || [];
+  }
+
+  // Fetch captions, excluding ones the user has voted on
+  let query = supabase
     .from('captions')
     .select('id, content, created_datetime_utc, like_count')
     .eq('is_public', true)
     .order('created_datetime_utc', { ascending: false })
     .limit(20);
+
+  if (votedCaptionIds.length > 0) {
+    query = query.not('id', 'in', `(${votedCaptionIds.join(',')})`);
+  }
+
+  const { data: captions, error } = await query;
 
   return (
     <main>
@@ -121,11 +146,15 @@ export default async function CaptionsPage() {
             <div className="col-md-8 col-lg-6">
               <div className="empty-state">
                 <div className="empty-icon">
-                  <i className="bi bi-chat-square"></i>
+                  <i className={votedCaptionIds.length > 0 ? "bi bi-check-circle" : "bi bi-chat-square"}></i>
                 </div>
-                <h3 className="empty-title">No Captions Yet</h3>
+                <h3 className="empty-title">
+                  {votedCaptionIds.length > 0 ? "All Done!" : "No Captions Yet"}
+                </h3>
                 <p className="empty-text">
-                  Public captions will appear here once they are added.
+                  {votedCaptionIds.length > 0
+                    ? "You've voted on all available captions. Check back later for more!"
+                    : "Public captions will appear here once they are added."}
                 </p>
               </div>
             </div>
