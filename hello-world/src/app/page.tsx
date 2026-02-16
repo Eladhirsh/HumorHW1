@@ -33,18 +33,6 @@ function getIconForTheme(themeName: string): string {
   return humorIcons.default;
 }
 
-function getCardColor(index: number): string {
-  const colors = [
-    'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-    'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-    'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-    'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
-    'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
-    'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
-  ];
-  return colors[index % colors.length];
-}
-
 export default async function Home() {
   const supabase = await createClient();
 
@@ -58,36 +46,38 @@ export default async function Home() {
   if (error) {
     return (
       <main>
-        <section className="hero-section">
-          <div className="container text-center">
-            <div className="hero-icon">
-              <i className="bi bi-emoji-frown text-white"></i>
-            </div>
-            <h1 className="hero-title">Oops!</h1>
-            <p className="hero-subtitle">Something went wrong</p>
+        <nav className="app-navbar">
+          <div className="container">
+            <span className="nav-brand">
+              <i className="bi bi-emoji-laughing"></i>
+              Humor Hub
+            </span>
           </div>
+        </nav>
+
+        <section className="hero-section">
+          <div className="hero-icon">
+            <i className="bi bi-emoji-frown"></i>
+          </div>
+          <h1 className="hero-title">Oops!</h1>
+          <p className="hero-subtitle">Something went wrong loading themes</p>
         </section>
 
-        <div className="container" style={{ marginTop: '2rem' }}>
-          <div className="row justify-content-center">
-            <div className="col-md-8 col-lg-6">
-              <div className="error-container">
-                <div className="error-icon">
-                  <i className="bi bi-exclamation-triangle"></i>
-                </div>
-                <h2 className="error-title">Error Loading Themes</h2>
-                <p className="error-message">
-                  <i className="bi bi-info-circle me-2"></i>
-                  {error.message}
-                </p>
-                <a
-                  href="/"
-                  className="btn btn-primary mt-4"
-                >
-                  <i className="bi bi-arrow-clockwise me-2"></i>
-                  Try Again
-                </a>
+        <div className="content-container">
+          <div style={{ maxWidth: '500px', margin: '0 auto' }}>
+            <div className="error-container">
+              <div className="error-icon">
+                <i className="bi bi-exclamation-triangle"></i>
               </div>
+              <h2 className="error-title">Error Loading Themes</h2>
+              <p className="error-message">
+                <i className="bi bi-info-circle" style={{ marginRight: '0.5rem' }}></i>
+                {error.message}
+              </p>
+              <a href="/" className="btn-accent" style={{ display: 'inline-flex', width: 'auto', marginTop: '1.5rem' }}>
+                <i className="bi bi-arrow-clockwise"></i>
+                Try Again
+              </a>
             </div>
           </div>
         </div>
@@ -97,92 +87,80 @@ export default async function Home() {
 
   return (
     <main>
-      {/* User Header */}
-      <nav className="navbar navbar-expand py-3" style={{ background: '#1a1a2e' }}>
+      {/* Navbar */}
+      <nav className="app-navbar">
         <div className="container">
-          <span className="navbar-brand text-white d-flex align-items-center gap-2">
+          <a href="/" className="nav-brand">
             <i className="bi bi-emoji-laughing"></i>
             Humor Hub
-          </span>
-          <div className="d-flex align-items-center gap-3">
-            <a href="/upload" className="btn btn-outline-light btn-sm">
-              <i className="bi bi-cloud-upload me-1"></i>
-              Upload
+          </a>
+          <div className="nav-actions">
+            <a href="/upload" className="nav-btn">
+              <i className="bi bi-cloud-upload"></i>
+              <span>Upload</span>
             </a>
-            <a href="/captions" className="btn btn-outline-light btn-sm">
-              <i className="bi bi-chat-square-quote me-1"></i>
-              Rate
+            <a href="/captions" className="nav-btn">
+              <i className="bi bi-chat-square-quote"></i>
+              <span>Rate</span>
             </a>
-            <div className="d-flex align-items-center gap-2 text-white">
+            <div className="nav-user">
               {user?.user_metadata?.avatar_url && (
                 <img
                   src={user.user_metadata.avatar_url}
                   alt="Profile"
-                  width={32}
-                  height={32}
-                  style={{ borderRadius: '50%' }}
                 />
               )}
-              <span className="d-none d-sm-inline">{user?.user_metadata?.full_name || user?.email}</span>
+              <span className="nav-user-name">{user?.user_metadata?.full_name || user?.email}</span>
             </div>
             <form action="/auth/signout" method="post">
-              <button type="submit" className="btn btn-outline-light btn-sm">
-                <i className="bi bi-box-arrow-right me-1"></i>
-                Sign Out
+              <button type="submit" className="nav-btn">
+                <i className="bi bi-box-arrow-right"></i>
+                <span>Sign Out</span>
               </button>
             </form>
           </div>
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="hero-section" style={{ paddingTop: '2rem' }}>
-        <div className="container text-center">
-          <div className="hero-icon">
-            <i className="bi bi-emoji-laughing text-white"></i>
-          </div>
-          <h1 className="hero-title mb-3">Humor Themes</h1>
-          <p className="hero-subtitle mb-0">
-            Welcome back, {user?.user_metadata?.full_name?.split(' ')[0] || 'friend'}! Explore the many flavors of comedy.
-          </p>
+      {/* Hero */}
+      <section className="hero-section">
+        <div className="hero-icon">
+          <i className="bi bi-emoji-laughing"></i>
         </div>
+        <h1 className="hero-title">Humor Themes</h1>
+        <p className="hero-subtitle">
+          Welcome back, {user?.user_metadata?.full_name?.split(' ')[0] || 'friend'}! Explore the many flavors of comedy.
+        </p>
       </section>
 
-      {/* Main Content */}
-      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-        {/* Stats Bar */}
+      {/* Content */}
+      <div className="content-container">
+        {/* Stats */}
         {themes && themes.length > 0 && (
-          <div className="row mb-4 fade-in">
-            <div className="col-12">
-              <div className="d-flex justify-content-center align-items-center gap-4 flex-wrap">
-                <span className="theme-badge">
-                  <i className="bi bi-collection me-1"></i>
-                  {themes.length} {themes.length === 1 ? 'Theme' : 'Themes'}
-                </span>
-                <span className="theme-badge">
-                  <i className="bi bi-stars me-1"></i>
-                  Curated Collection
-                </span>
-              </div>
-            </div>
+          <div className="fade-in" style={{ display: 'flex', justifyContent: 'center', gap: '0.75rem', marginBottom: '1.5rem', flexWrap: 'wrap' }}>
+            <span className="theme-badge">
+              <i className="bi bi-collection"></i>
+              {themes.length} {themes.length === 1 ? 'Theme' : 'Themes'}
+            </span>
+            <span className="theme-badge">
+              <i className="bi bi-stars"></i>
+              Curated Collection
+            </span>
           </div>
         )}
 
-        {/* Theme Cards Grid */}
-        <div className="row g-4">
+        {/* Theme Grid */}
+        <div className="grid grid-3">
           {themes?.map((theme: HumorTheme, index: number) => (
             <div
               key={theme.id}
-              className={`col-12 col-md-6 col-lg-4 slide-up delay-${Math.min(index + 1, 5)}`}
+              className={`slide-up delay-${Math.min(index + 1, 5)}`}
               style={{ opacity: 0 }}
             >
-              <div className="theme-card h-100">
+              <div className="theme-card" style={{ height: '100%' }}>
                 <div className="card-body">
-                  <div
-                    className="card-icon"
-                    style={{ background: getCardColor(index) }}
-                  >
-                    <i className={`bi ${getIconForTheme(theme.name)} text-white`}></i>
+                  <div className="card-icon">
+                    <i className={`bi ${getIconForTheme(theme.name)}`}></i>
                   </div>
                   <h2 className="card-title">{theme.name}</h2>
                   {theme.description && (
@@ -191,7 +169,7 @@ export default async function Home() {
                   <div className="card-meta">
                     <i className="bi bi-calendar3"></i>
                     <span>
-                      Added {new Date(theme.created_datetime_utc).toLocaleDateString('en-US', {
+                      {new Date(theme.created_datetime_utc).toLocaleDateString('en-US', {
                         year: 'numeric',
                         month: 'short',
                         day: 'numeric'
@@ -206,17 +184,15 @@ export default async function Home() {
 
         {/* Empty State */}
         {(!themes || themes.length === 0) && (
-          <div className="row justify-content-center fade-in">
-            <div className="col-md-8 col-lg-6">
-              <div className="empty-state">
-                <div className="empty-icon">
-                  <i className="bi bi-inbox"></i>
-                </div>
-                <h3 className="empty-title">No Themes Yet</h3>
-                <p className="empty-text">
-                  Humor themes will appear here once they are added to the collection.
-                </p>
+          <div className="fade-in" style={{ maxWidth: '500px', margin: '0 auto' }}>
+            <div className="empty-state">
+              <div className="empty-icon">
+                <i className="bi bi-inbox"></i>
               </div>
+              <h3 className="empty-title">No Themes Yet</h3>
+              <p className="empty-text">
+                Humor themes will appear here once they are added to the collection.
+              </p>
             </div>
           </div>
         )}
@@ -224,12 +200,9 @@ export default async function Home() {
 
       {/* Footer */}
       <footer className="footer">
-        <div className="container text-center">
-          <p className="footer-text mb-0">
-            <i className="bi bi-heart-fill text-danger me-1"></i>
-            Made with humor in mind
-          </p>
-        </div>
+        <p className="footer-text">
+          Made with humor in mind
+        </p>
       </footer>
     </main>
   );

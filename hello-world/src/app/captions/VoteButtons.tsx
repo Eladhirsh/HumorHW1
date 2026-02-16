@@ -23,12 +23,12 @@ export default function VoteButtons({ captionId }: { captionId: string }) {
   };
 
   return (
-    <div className="d-flex flex-column align-items-center gap-2">
-      <div className="btn-group" role="group">
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
+      <div className="vote-group">
         <button
           onClick={() => handleVote(1)}
           disabled={loading}
-          className="btn btn-outline-success"
+          className="vote-btn upvote"
           title="Upvote"
         >
           <i className="bi bi-hand-thumbs-up-fill"></i>
@@ -36,14 +36,17 @@ export default function VoteButtons({ captionId }: { captionId: string }) {
         <button
           onClick={() => handleVote(-1)}
           disabled={loading}
-          className="btn btn-outline-danger"
+          className="vote-btn downvote"
           title="Downvote"
         >
           <i className="bi bi-hand-thumbs-down-fill"></i>
         </button>
       </div>
       {message && (
-        <small className={message.type === 'success' ? 'text-success' : 'text-danger'}>
+        <small style={{
+          color: message.type === 'success' ? 'var(--success)' : 'var(--danger)',
+          fontSize: '0.75rem'
+        }}>
           {message.text}
         </small>
       )}

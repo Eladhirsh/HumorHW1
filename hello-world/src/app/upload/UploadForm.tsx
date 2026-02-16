@@ -69,7 +69,7 @@ export default function UploadForm() {
       }
 
       // Step 4: Generate captions
-      setStatus('Generating captions... (this may take a moment)');
+      setStatus('Generating captions...');
       const captionsResult = await generateCaptions(registerResult.imageId!);
       if (captionsResult.error) {
         throw new Error(captionsResult.error);
@@ -88,30 +88,30 @@ export default function UploadForm() {
   return (
     <div>
       {/* File Input */}
-      <div className="mb-4">
-        <label htmlFor="imageUpload" className="form-label fw-medium">
+      <div style={{ marginBottom: '1.25rem' }}>
+        <label htmlFor="imageUpload" className="form-label">
           Select an image
         </label>
         <input
           type="file"
           id="imageUpload"
-          className="form-control"
+          className="form-input"
           accept={ACCEPTED_TYPES.join(',')}
           onChange={handleFileChange}
           disabled={loading}
         />
-        <small className="text-muted">
+        <p className="form-hint">
           Supported: JPEG, PNG, WebP, GIF, HEIC
-        </small>
+        </p>
       </div>
 
       {/* Preview */}
       {preview && (
-        <div className="mb-4 text-center">
+        <div style={{ marginBottom: '1.25rem', textAlign: 'center' }}>
           <img
             src={preview}
             alt="Preview"
-            style={{ maxWidth: '100%', maxHeight: '300px', borderRadius: '8px' }}
+            className="image-preview"
           />
         </div>
       )}
@@ -120,16 +120,17 @@ export default function UploadForm() {
       <button
         onClick={handleUpload}
         disabled={!file || loading}
-        className="btn btn-primary w-100 py-2 mb-3"
+        className="btn-accent"
+        style={{ marginBottom: '1rem' }}
       >
         {loading ? (
           <>
-            <span className="spinner-border spinner-border-sm me-2" role="status"></span>
+            <span className="spinner"></span>
             {status}
           </>
         ) : (
           <>
-            <i className="bi bi-cloud-upload me-2"></i>
+            <i className="bi bi-cloud-upload"></i>
             Upload & Generate Captions
           </>
         )}
@@ -137,23 +138,23 @@ export default function UploadForm() {
 
       {/* Error */}
       {error && (
-        <div className="alert alert-danger" role="alert">
-          <i className="bi bi-exclamation-triangle me-2"></i>
+        <div className="alert-error">
+          <i className="bi bi-exclamation-triangle"></i>
           {error}
         </div>
       )}
 
       {/* Generated Captions */}
       {captions.length > 0 && (
-        <div className="mt-4">
-          <h5 className="fw-bold mb-3">
-            <i className="bi bi-chat-quote me-2"></i>
+        <div style={{ marginTop: '1.5rem' }}>
+          <h5 style={{ fontSize: '0.95rem', fontWeight: 600, marginBottom: '0.75rem', color: 'var(--text-primary)' }}>
+            <i className="bi bi-chat-quote" style={{ marginRight: '0.5rem', color: 'var(--accent-light)' }}></i>
             Generated Captions
           </h5>
-          <div className="list-group">
+          <div>
             {captions.map((caption, index) => (
-              <div key={caption.id || index} className="list-group-item">
-                <p className="mb-0">&ldquo;{caption.content}&rdquo;</p>
+              <div key={caption.id || index} className="caption-item">
+                <p className="caption-text">&ldquo;{caption.content}&rdquo;</p>
               </div>
             ))}
           </div>

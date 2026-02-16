@@ -47,86 +47,82 @@ export default async function CaptionsPage() {
 
   return (
     <main>
-      {/* User Header */}
-      <nav className="navbar navbar-expand py-3" style={{ background: '#1a1a2e' }}>
+      {/* Navbar */}
+      <nav className="app-navbar">
         <div className="container">
-          <a href="/" className="navbar-brand text-white d-flex align-items-center gap-2" style={{ textDecoration: 'none' }}>
+          <a href="/" className="nav-brand">
             <i className="bi bi-emoji-laughing"></i>
             Humor Hub
           </a>
-          <div className="d-flex align-items-center gap-3">
-            <a href="/" className="btn btn-outline-light btn-sm">
-              <i className="bi bi-house me-1"></i>
-              Home
+          <div className="nav-actions">
+            <a href="/" className="nav-btn">
+              <i className="bi bi-house"></i>
+              <span>Home</span>
             </a>
-            <a href="/upload" className="btn btn-outline-light btn-sm">
-              <i className="bi bi-cloud-upload me-1"></i>
-              Upload
+            <a href="/upload" className="nav-btn">
+              <i className="bi bi-cloud-upload"></i>
+              <span>Upload</span>
             </a>
-            <div className="d-flex align-items-center gap-2 text-white">
+            <div className="nav-user">
               {user?.user_metadata?.avatar_url && (
                 <img
                   src={user.user_metadata.avatar_url}
                   alt="Profile"
-                  width={32}
-                  height={32}
-                  style={{ borderRadius: '50%' }}
                 />
               )}
-              <span className="d-none d-sm-inline">{user?.user_metadata?.full_name || user?.email}</span>
+              <span className="nav-user-name">{user?.user_metadata?.full_name || user?.email}</span>
             </div>
             <form action="/auth/signout" method="post">
-              <button type="submit" className="btn btn-outline-light btn-sm">
-                <i className="bi bi-box-arrow-right me-1"></i>
-                Sign Out
+              <button type="submit" className="nav-btn">
+                <i className="bi bi-box-arrow-right"></i>
+                <span>Sign Out</span>
               </button>
             </form>
           </div>
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="hero-section" style={{ paddingTop: '2rem' }}>
-        <div className="container text-center">
-          <div className="hero-icon">
-            <i className="bi bi-chat-square-quote text-white"></i>
-          </div>
-          <h1 className="hero-title mb-3">Rate Captions</h1>
-          <p className="hero-subtitle mb-0">
-            Vote on your favorite captions!
-          </p>
+      {/* Hero */}
+      <section className="hero-section">
+        <div className="hero-icon">
+          <i className="bi bi-chat-square-quote"></i>
         </div>
+        <h1 className="hero-title">Rate Captions</h1>
+        <p className="hero-subtitle">
+          Vote on your favorite captions
+        </p>
       </section>
 
-      {/* Main Content */}
-      <div className="container py-4" style={{ position: 'relative', zIndex: 1, marginTop: '2rem' }}>
+      {/* Content */}
+      <div className="content-container">
         {error && (
-          <div className="alert alert-danger" role="alert">
-            <i className="bi bi-exclamation-triangle me-2"></i>
+          <div className="alert-error" style={{ marginBottom: '1.5rem' }}>
+            <i className="bi bi-exclamation-triangle"></i>
             {error.message}
           </div>
         )}
 
         {/* Captions Grid */}
-        <div className="row g-4">
+        <div className="grid grid-2">
           {captions?.map((caption: Caption, index: number) => (
             <div
               key={caption.id}
-              className={`col-12 col-md-6 slide-up delay-${Math.min(index + 1, 5)}`}
+              className={`slide-up delay-${Math.min(index + 1, 5)}`}
               style={{ opacity: 0 }}
             >
-              <div className="theme-card h-100">
-                <div className="card-body d-flex flex-column">
-                  <div className="flex-grow-1">
-                    <p className="card-description fs-5 mb-3">
+              <div className="theme-card" style={{ height: '100%' }}>
+                <div className="card-body" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+                  <div style={{ flex: 1 }}>
+                    <p className="caption-text" style={{ marginBottom: '0.75rem' }}>
                       &ldquo;{caption.content}&rdquo;
                     </p>
-                    <div className="card-meta mb-3">
-                      <i className="bi bi-heart-fill text-danger me-1"></i>
-                      <span>{caption.like_count} likes</span>
-                      <span className="mx-2">|</span>
-                      <i className="bi bi-calendar3 me-1"></i>
-                      <span>
+                    <div className="caption-meta" style={{ marginBottom: '0.75rem' }}>
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                        <i className="bi bi-heart-fill" style={{ color: 'var(--danger)', fontSize: '0.7rem' }}></i>
+                        {caption.like_count} likes
+                      </span>
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                        <i className="bi bi-calendar3"></i>
                         {new Date(caption.created_datetime_utc).toLocaleDateString('en-US', {
                           year: 'numeric',
                           month: 'short',
@@ -135,7 +131,7 @@ export default async function CaptionsPage() {
                       </span>
                     </div>
                   </div>
-                  <div className="border-top pt-3">
+                  <div style={{ borderTop: '1px solid var(--border)', paddingTop: '0.75rem' }}>
                     <VoteButtons captionId={caption.id} />
                   </div>
                 </div>
@@ -146,21 +142,19 @@ export default async function CaptionsPage() {
 
         {/* Empty State */}
         {(!captions || captions.length === 0) && !error && (
-          <div className="row justify-content-center fade-in">
-            <div className="col-md-8 col-lg-6">
-              <div className="empty-state">
-                <div className="empty-icon">
-                  <i className={votedCaptionIds.length > 0 ? "bi bi-check-circle" : "bi bi-chat-square"}></i>
-                </div>
-                <h3 className="empty-title">
-                  {votedCaptionIds.length > 0 ? "All Done!" : "No Captions Yet"}
-                </h3>
-                <p className="empty-text">
-                  {votedCaptionIds.length > 0
-                    ? "You've voted on all available captions. Check back later for more!"
-                    : "Public captions will appear here once they are added."}
-                </p>
+          <div className="fade-in" style={{ maxWidth: '500px', margin: '0 auto' }}>
+            <div className="empty-state">
+              <div className="empty-icon">
+                <i className={`bi ${votedCaptionIds.length > 0 ? 'bi-check-circle' : 'bi-chat-square'}`}></i>
               </div>
+              <h3 className="empty-title">
+                {votedCaptionIds.length > 0 ? 'All Done!' : 'No Captions Yet'}
+              </h3>
+              <p className="empty-text">
+                {votedCaptionIds.length > 0
+                  ? "You've voted on all available captions. Check back later for more!"
+                  : 'Public captions will appear here once they are added.'}
+              </p>
             </div>
           </div>
         )}
@@ -168,12 +162,9 @@ export default async function CaptionsPage() {
 
       {/* Footer */}
       <footer className="footer">
-        <div className="container text-center">
-          <p className="footer-text mb-0">
-            <i className="bi bi-heart-fill text-danger me-1"></i>
-            Made with humor in mind
-          </p>
-        </div>
+        <p className="footer-text">
+          Made with humor in mind
+        </p>
       </footer>
     </main>
   );
