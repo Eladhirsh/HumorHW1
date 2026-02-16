@@ -157,27 +157,29 @@ export default async function Home() {
               className={`slide-up delay-${Math.min(index + 1, 5)}`}
               style={{ opacity: 0 }}
             >
-              <div className="theme-card" style={{ height: '100%' }}>
-                <div className="card-body">
-                  <div className="card-icon">
-                    <i className={`bi ${getIconForTheme(theme.name)}`}></i>
-                  </div>
-                  <h2 className="card-title">{theme.name}</h2>
-                  {theme.description && (
-                    <p className="card-description">{theme.description}</p>
-                  )}
-                  <div className="card-meta">
-                    <i className="bi bi-calendar3"></i>
-                    <span>
-                      {new Date(theme.created_datetime_utc).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'short',
-                        day: 'numeric'
-                      })}
-                    </span>
+              <a href="/captions" className="theme-card-link">
+                <div className="theme-card" style={{ height: '100%' }}>
+                  <div className="card-body">
+                    <div className="card-icon">
+                      <i className={`bi ${getIconForTheme(theme.name)}`}></i>
+                    </div>
+                    <h2 className="card-title">{theme.name}</h2>
+                    {theme.description && (
+                      <p className="card-description">{theme.description}</p>
+                    )}
+                    <div className="card-meta">
+                      <i className="bi bi-calendar3"></i>
+                      <span>
+                        {new Date(theme.created_datetime_utc).toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'short',
+                          day: 'numeric'
+                        })}
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </a>
             </div>
           ))}
         </div>
