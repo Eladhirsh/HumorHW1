@@ -8,7 +8,7 @@ type Caption = {
   content: string;
 };
 
-const ACCEPTED_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif', 'image/heic'];
+const ACCEPTED_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif'];
 
 export default function UploadForm() {
   const [file, setFile] = useState<File | null>(null);
@@ -22,7 +22,7 @@ export default function UploadForm() {
     const selectedFile = e.target.files?.[0];
     if (selectedFile) {
       if (!ACCEPTED_TYPES.includes(selectedFile.type)) {
-        setError('Invalid file type. Please upload a JPEG, PNG, WebP, GIF, or HEIC image.');
+        setError('Invalid file type. Please upload a JPEG, PNG, WebP, or GIF image.');
         return;
       }
       setFile(selectedFile);
@@ -101,7 +101,7 @@ export default function UploadForm() {
           disabled={loading}
         />
         <p className="form-hint">
-          Supported: JPEG, PNG, WebP, GIF, HEIC
+          Supported: JPEG, PNG, WebP, GIF
         </p>
       </div>
 
