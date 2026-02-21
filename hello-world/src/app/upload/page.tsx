@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server';
 import UploadForm from './UploadForm';
+import ThemeToggle from '../ThemeToggle';
 
 export default async function UploadPage() {
   const supabase = await createClient();
@@ -23,6 +24,7 @@ export default async function UploadPage() {
               <i className="bi bi-chat-square-quote"></i>
               <span>Rate</span>
             </a>
+            <ThemeToggle />
             <div className="nav-user">
               {user?.user_metadata?.avatar_url && (
                 <img

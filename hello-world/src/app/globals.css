@@ -1,4 +1,4 @@
-/* ===== CSS Variables ===== */
+/* ===== CSS Variables (Dark Theme - Default) ===== */
 :root {
   --bg-primary: #13131a;
   --bg-secondary: #1a1a24;
@@ -22,6 +22,44 @@
   --radius-xl: 20px;
   --transition: all 0.2s ease;
   --font: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --navbar-bg: rgba(19, 19, 26, 0.85);
+  --grid-dot: rgba(255, 255, 255, 0.04);
+  --glow-color: rgba(139, 92, 246, 0.12);
+  --alert-error-text: #fca5a5;
+  --alert-success-text: #86efac;
+  --spinner-border: rgba(255, 255, 255, 0.2);
+  --spinner-top: white;
+  --google-btn-bg: white;
+  --google-btn-color: #1f1f1f;
+  --google-btn-hover: #f5f5f5;
+}
+
+/* ===== Light Theme ===== */
+[data-theme="light"] {
+  --bg-primary: #f5f3ff;
+  --bg-secondary: #ede9fe;
+  --bg-card: rgba(139, 92, 246, 0.06);
+  --bg-card-hover: rgba(139, 92, 246, 0.12);
+  --bg-glass: rgba(139, 92, 246, 0.05);
+  --bg-glass-border: rgba(139, 92, 246, 0.12);
+  --text-primary: #1e1b4b;
+  --text-secondary: #4c4580;
+  --text-muted: #7c73a8;
+  --accent: #7c3aed;
+  --accent-light: #6d28d9;
+  --accent-glow: rgba(124, 58, 237, 0.15);
+  --border: rgba(139, 92, 246, 0.12);
+  --border-hover: rgba(139, 92, 246, 0.25);
+  --navbar-bg: rgba(245, 243, 255, 0.9);
+  --grid-dot: rgba(139, 92, 246, 0.06);
+  --glow-color: rgba(139, 92, 246, 0.08);
+  --alert-error-text: #dc2626;
+  --alert-success-text: #16a34a;
+  --spinner-border: rgba(30, 27, 75, 0.2);
+  --spinner-top: #1e1b4b;
+  --google-btn-bg: #1e1b4b;
+  --google-btn-color: white;
+  --google-btn-hover: #312e6b;
 }
 
 /* ===== Reset & Base ===== */
@@ -44,7 +82,7 @@ body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-image: radial-gradient(var(--grid-dot) 1px, transparent 1px);
   background-size: 32px 32px;
   pointer-events: none;
   z-index: 0;
@@ -58,7 +96,7 @@ body::after {
   right: -200px;
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, transparent 70%);
+  background: radial-gradient(circle, var(--glow-color) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -79,7 +117,7 @@ a:hover {
 
 /* ===== Navbar ===== */
 .app-navbar {
-  background: rgba(19, 19, 26, 0.85);
+  background: var(--navbar-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
@@ -507,7 +545,7 @@ a.theme-card-link:hover {
   background: rgba(239, 68, 68, 0.1);
   border: 1px solid rgba(239, 68, 68, 0.2);
   border-radius: var(--radius);
-  color: #fca5a5;
+  color: var(--alert-error-text);
   font-size: 0.85rem;
 }
 
@@ -519,7 +557,7 @@ a.theme-card-link:hover {
   background: rgba(34, 197, 94, 0.1);
   border: 1px solid rgba(34, 197, 94, 0.2);
   border-radius: var(--radius);
-  color: #86efac;
+  color: var(--alert-success-text);
   font-size: 0.85rem;
 }
 
@@ -627,8 +665,8 @@ a.theme-card-link:hover {
 .spinner {
   width: 16px;
   height: 16px;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-top-color: white;
+  border: 2px solid var(--spinner-border);
+  border-top-color: var(--spinner-top);
   border-radius: 50%;
   animation: spin 0.6s linear infinite;
   display: inline-block;
@@ -795,8 +833,8 @@ a.theme-card-link:hover {
   gap: 0.6rem;
   width: 100%;
   padding: 0.75rem 1rem;
-  background: white;
-  color: #1f1f1f;
+  background: var(--google-btn-bg);
+  color: var(--google-btn-color);
   border: none;
   border-radius: var(--radius);
   font-family: var(--font);
@@ -807,7 +845,7 @@ a.theme-card-link:hover {
 }
 
 .google-btn:hover {
-  background: #f5f5f5;
+  background: var(--google-btn-hover);
   transform: translateY(-1px);
 }
 
@@ -826,4 +864,103 @@ a.theme-card-link:hover {
   color: var(--text-secondary);
   font-size: 0.8rem;
   padding: 0.5rem 0;
+}
+
+/* ===== Theme Toggle ===== */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.theme-toggle:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-hover);
+  color: var(--accent);
+}
+
+/* ===== Rating Cloud Bubble ===== */
+.rating-cloud {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 90;
+  animation: cloudFloat 3s ease-in-out infinite;
+}
+
+.rating-cloud a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--accent);
+  color: white;
+  border-radius: 50px;
+  font-family: var(--font);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 24px rgba(139, 92, 246, 0.4);
+  transition: var(--transition);
+  position: relative;
+}
+
+.rating-cloud a:hover {
+  background: #7c3aed;
+  transform: scale(1.05);
+  color: white;
+  box-shadow: 0 6px 32px rgba(139, 92, 246, 0.5);
+}
+
+.rating-cloud a::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  right: 24px;
+  width: 12px;
+  height: 12px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+.rating-cloud a::before {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  right: 18px;
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+.rating-cloud a:hover::after,
+.rating-cloud a:hover::before {
+  background: #7c3aed;
+}
+
+@keyframes cloudFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@media (max-width: 480px) {
+  .rating-cloud {
+    bottom: 1rem;
+    right: 1rem;
+  }
+
+  .rating-cloud a {
+    font-size: 0.78rem;
+    padding: 0.6rem 1rem;
+  }
 }

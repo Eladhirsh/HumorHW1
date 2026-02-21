@@ -1,4 +1,5 @@
 import { createClient } from '@/lib/supabase/server';
+import ThemeToggle from './ThemeToggle';
 
 type HumorTheme = {
   id: number;
@@ -103,6 +104,7 @@ export default async function Home() {
               <i className="bi bi-chat-square-quote"></i>
               <span>Rate</span>
             </a>
+            <ThemeToggle />
             <div className="nav-user">
               {user?.user_metadata?.avatar_url && (
                 <img
@@ -198,6 +200,14 @@ export default async function Home() {
             </div>
           </div>
         )}
+      </div>
+
+      {/* Rating Cloud Bubble */}
+      <div className="rating-cloud">
+        <a href="/captions">
+          <i className="bi bi-star-fill"></i>
+          Come rate me!
+        </a>
       </div>
 
       {/* Footer */}

@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server';
 import VoteButtons from './VoteButtons';
+import ThemeToggle from '../ThemeToggle';
 
 type Caption = {
   id: string;
@@ -63,6 +64,7 @@ export default async function CaptionsPage() {
               <i className="bi bi-cloud-upload"></i>
               <span>Upload</span>
             </a>
+            <ThemeToggle />
             <div className="nav-user">
               {user?.user_metadata?.avatar_url && (
                 <img
