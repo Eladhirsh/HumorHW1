@@ -25,19 +25,14 @@ const humorIcons: Record<string, string> = {
 };
 
 const humorImages: Record<string, string> = {
-  'sarcasm': 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=220&fit=crop',
-  'satire': 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=400&h=220&fit=crop',
-  'parody': 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=220&fit=crop',
-  'irony': 'https://images.unsplash.com/photo-1595207133248-667f264e8da1?w=400&h=220&fit=crop',
-  'slapstick': 'https://images.unsplash.com/photo-1540832590-d5d47100a53f?w=400&h=220&fit=crop',
-  'wit': 'https://images.unsplash.com/photo-1560174038-da43ac3f89a1?w=400&h=220&fit=crop',
-  'pun': 'https://images.unsplash.com/photo-1553702446-73f55f6c1ac7?w=400&h=220&fit=crop',
-  'dark': 'https://images.unsplash.com/photo-1509803874385-db7c23652552?w=400&h=220&fit=crop',
-  'absurd': 'https://images.unsplash.com/photo-1618331835717-801e976710b2?w=400&h=220&fit=crop',
-  'observational': 'https://images.unsplash.com/photo-1563291074-2bf8677ac0e5?w=400&h=220&fit=crop',
-  'self-deprecating': 'https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=400&h=220&fit=crop',
-  'deadpan': 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&h=220&fit=crop',
-  'default': 'https://images.unsplash.com/photo-1543589077-47d81606c1bf?w=400&h=220&fit=crop',
+  'columbia': 'https://images.unsplash.com/photo-1581611481625-76bd7df8ab33?w=400&h=220&fit=crop',
+  'barnard': 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&h=220&fit=crop',
+  'brainrot': 'https://images.unsplash.com/photo-1714481651343-b580f84d5c83?w=400&h=220&fit=crop',
+  'current': 'https://images.unsplash.com/photo-1586339949216-35c2747cc36d?w=400&h=220&fit=crop',
+  'new york': 'https://images.unsplash.com/photo-1722788831308-aa8b4aa85354?w=400&h=220&fit=crop',
+  'original': 'https://images.unsplash.com/photo-1663510039867-0d0c893e33b5?w=400&h=220&fit=crop',
+  'personalities': 'https://images.unsplash.com/photo-1664051569163-bd04e930acb1?w=400&h=220&fit=crop',
+  'default': 'https://images.unsplash.com/photo-1642051484628-7913f84df945?w=400&h=220&fit=crop',
 };
 
 function getIconForTheme(themeName: string): string {
