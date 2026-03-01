@@ -24,6 +24,22 @@ const humorIcons: Record<string, string> = {
   'default': 'bi-emoji-laughing',
 };
 
+const humorImages: Record<string, string> = {
+  'sarcasm': 'https://images.unsplash.com/photo-1531747056868-e1b9ad199aab?w=400&h=220&fit=crop',
+  'satire': 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=400&h=220&fit=crop',
+  'parody': 'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400&h=220&fit=crop',
+  'irony': 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=400&h=220&fit=crop',
+  'slapstick': 'https://images.unsplash.com/photo-1525286116112-b59af0ae4a95?w=400&h=220&fit=crop',
+  'wit': 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=400&h=220&fit=crop',
+  'pun': 'https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=400&h=220&fit=crop',
+  'dark': 'https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?w=400&h=220&fit=crop',
+  'absurd': 'https://images.unsplash.com/photo-1533279443086-d1c19a186416?w=400&h=220&fit=crop',
+  'observational': 'https://images.unsplash.com/photo-1502126324834-38f8e02d7160?w=400&h=220&fit=crop',
+  'self-deprecating': 'https://images.unsplash.com/photo-1521543832500-49e69fb2b3ad?w=400&h=220&fit=crop',
+  'deadpan': 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&h=220&fit=crop',
+  'default': 'https://images.unsplash.com/photo-1543589077-47d81606c1bf?w=400&h=220&fit=crop',
+};
+
 function getIconForTheme(themeName: string): string {
   const lowerName = themeName.toLowerCase();
   for (const [key, icon] of Object.entries(humorIcons)) {
@@ -32,6 +48,16 @@ function getIconForTheme(themeName: string): string {
     }
   }
   return humorIcons.default;
+}
+
+function getImageForTheme(themeName: string): string {
+  const lowerName = themeName.toLowerCase();
+  for (const [key, image] of Object.entries(humorImages)) {
+    if (key !== 'default' && lowerName.includes(key)) {
+      return image;
+    }
+  }
+  return humorImages.default;
 }
 
 export default async function Home() {
@@ -161,10 +187,19 @@ export default async function Home() {
             >
               <a href="/captions" className="theme-card-link">
                 <div className="theme-card" style={{ height: '100%' }}>
-                  <div className="card-body">
-                    <div className="card-icon">
-                      <i className={`bi ${getIconForTheme(theme.name)}`}></i>
+                  <div className="card-image">
+                    <img
+                      src={getImageForTheme(theme.name)}
+                      alt={theme.name}
+                      loading="lazy"
+                    />
+                    <div className="card-image-overlay">
+                      <div className="card-icon">
+                        <i className={`bi ${getIconForTheme(theme.name)}`}></i>
+                      </div>
                     </div>
+                  </div>
+                  <div className="card-body">
                     <h2 className="card-title">{theme.name}</h2>
                     {theme.description && (
                       <p className="card-description">{theme.description}</p>
