@@ -25,14 +25,14 @@ const humorIcons: Record<string, string> = {
 };
 
 const humorImages: Record<string, string> = {
-  'columbia': 'https://images.unsplash.com/photo-1581611481625-76bd7df8ab33?w=400&h=220&fit=crop',
-  'barnard': 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&h=220&fit=crop',
-  'brainrot': 'https://images.unsplash.com/photo-1714481651343-b580f84d5c83?w=400&h=220&fit=crop',
-  'current': 'https://images.unsplash.com/photo-1586339949216-35c2747cc36d?w=400&h=220&fit=crop',
-  'new york': 'https://images.unsplash.com/photo-1722788831308-aa8b4aa85354?w=400&h=220&fit=crop',
-  'original': 'https://images.unsplash.com/photo-1663510039867-0d0c893e33b5?w=400&h=220&fit=crop',
-  'personalities': 'https://images.unsplash.com/photo-1664051569163-bd04e930acb1?w=400&h=220&fit=crop',
-  'default': 'https://images.unsplash.com/photo-1642051484628-7913f84df945?w=400&h=220&fit=crop',
+  'columbia': 'https://images.unsplash.com/photo-1562774053-701939374585?w=400&h=220&fit=crop',
+  'barnard': 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=400&h=220&fit=crop',
+  'brainrot': 'https://images.unsplash.com/photo-1585559700398-1385b3a8aeb6?w=400&h=220&fit=crop',
+  'current': 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=400&h=220&fit=crop',
+  'new york': 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=400&h=220&fit=crop',
+  'original': 'https://images.unsplash.com/photo-1535320903710-d993d3d77d29?w=400&h=220&fit=crop',
+  'personalities': 'https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=400&h=220&fit=crop',
+  'default': 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=400&h=220&fit=crop',
 };
 
 function getIconForTheme(themeName: string): string {
