@@ -25,18 +25,18 @@ const humorIcons: Record<string, string> = {
 };
 
 const humorImages: Record<string, string> = {
-  'sarcasm': 'https://images.unsplash.com/photo-1531747056868-e1b9ad199aab?w=400&h=220&fit=crop',
-  'satire': 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=400&h=220&fit=crop',
-  'parody': 'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400&h=220&fit=crop',
-  'irony': 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=400&h=220&fit=crop',
-  'slapstick': 'https://images.unsplash.com/photo-1525286116112-b59af0ae4a95?w=400&h=220&fit=crop',
-  'wit': 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=400&h=220&fit=crop',
-  'pun': 'https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=400&h=220&fit=crop',
-  'dark': 'https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?w=400&h=220&fit=crop',
-  'absurd': 'https://images.unsplash.com/photo-1533279443086-d1c19a186416?w=400&h=220&fit=crop',
-  'observational': 'https://images.unsplash.com/photo-1502126324834-38f8e02d7160?w=400&h=220&fit=crop',
-  'self-deprecating': 'https://images.unsplash.com/photo-1521543832500-49e69fb2b3ad?w=400&h=220&fit=crop',
-  'deadpan': 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&h=220&fit=crop',
+  'sarcasm': 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=220&fit=crop',
+  'satire': 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=400&h=220&fit=crop',
+  'parody': 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=220&fit=crop',
+  'irony': 'https://images.unsplash.com/photo-1595207133248-667f264e8da1?w=400&h=220&fit=crop',
+  'slapstick': 'https://images.unsplash.com/photo-1540832590-d5d47100a53f?w=400&h=220&fit=crop',
+  'wit': 'https://images.unsplash.com/photo-1560174038-da43ac3f89a1?w=400&h=220&fit=crop',
+  'pun': 'https://images.unsplash.com/photo-1553702446-73f55f6c1ac7?w=400&h=220&fit=crop',
+  'dark': 'https://images.unsplash.com/photo-1509803874385-db7c23652552?w=400&h=220&fit=crop',
+  'absurd': 'https://images.unsplash.com/photo-1618331835717-801e976710b2?w=400&h=220&fit=crop',
+  'observational': 'https://images.unsplash.com/photo-1563291074-2bf8677ac0e5?w=400&h=220&fit=crop',
+  'self-deprecating': 'https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=400&h=220&fit=crop',
+  'deadpan': 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&h=220&fit=crop',
   'default': 'https://images.unsplash.com/photo-1543589077-47d81606c1bf?w=400&h=220&fit=crop',
 };
 
