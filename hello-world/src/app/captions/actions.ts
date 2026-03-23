@@ -30,7 +30,8 @@ export async function voteOnCaption(captionId: string, voteValue: number) {
       caption_id: captionId,
       profile_id: profile.id,
       vote_value: voteValue,
-      created_datetime_utc: new Date().toISOString(),
+      created_by_user_id: profile.id,
+      modified_by_user_id: profile.id,
     });
 
   if (error) {
